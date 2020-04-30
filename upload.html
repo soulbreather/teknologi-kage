@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="da">
+
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500"
+        rel="stylesheet" type="text/css">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Custom Cakes</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbarNavbar">
+        <a class="navbar-brand" href="index.html">
+            <img src="Billeder/logo.png" height="40" class="d-inline-block align-top ml-2">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Forside</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kageshop.html">Kageshop</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="upload.html">Upload Eget Billede</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="upload_container">
+        <h1 class="display-4 mt-2 mb-4" id="my-header">Brugerdefinerede Kager</h1>
+        <h5 class="my-3 ml-4" style="font-weight: normal;">Vi laver også special kager, dvs. at du kan sende et
+            billede/tegning af en kage du godt vil have os til at lave.</h5>
+        <div class="ml-2 col-sm-6">
+            <form>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Upload billede</label>
+                </div>
+            </form>
+            <br>
+        </div>
+        <div class="row">
+            <div class="ml-2 col-sm-6">
+                <img src="https://placehold.it/150x120" id="preview" class="img-thumbnail">
+            </div>
+
+            <!-- <div class="col-sm-5">
+            <!-- <div class="col-sm-5">
+                <img src="./billeder/cakeimg2.png" class="rounded float-right" style="width: 50%; height: 100%;">
+            </div> -->
+        </div>
+
+
+        <div class="ml-2 col-sm-6">
+            <br>
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Email Addresse:</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="navn@eksempel.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Eventuelle bemærkninger til kagen:</label>
+                    <textarea class="form-control" placeholder="Bemærkning" id="exampleFormControlTextarea1"
+                        rows="2"></textarea>
+                </div>
+            </form>
+        </div>
+
+        <div class="ml-2 col-sm-7">
+
+            <div id="message"></div>
+            <a name="submit" id="success" class="btn btn-primary" style="color: whitesmoke;" role="button">Send</a>
+
+            <br>
+            <br>
+
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p class="text-center">&copy; 2020 - Custom Cakes</p>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).on("click", ".browse", function () {
+            var file = $(this).parents().find(".file");
+            file.trigger("click");
+        });
+        $('input[type="file"]').change(function (e) {
+            var fileName = e.target.files[0].name;
+            $("#file").val(fileName);
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("preview").src = e.target.result;
+            };
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#success').click(function (e) {
+
+                e.preventDefault()
+                $('#message').html(
+                    '<div id="myAlert" class="alert alert-primary alert-dismissible fade show" role="alert"><strong>En email vil blive sendt til dig vedr. din kage inden for 2 dage.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'
+                );
+            })
+        });
+    </script>
+
+    <script>
+        ScrollReveal().reveal('#navbarNav', {
+            delay: 500,
+            duration: 1000,
+            origin: 'right',
+            distance: '247.93px'
+        });
+
+        ScrollReveal().reveal('#upload_container', {
+            duration: 2000,
+        });
+    </script>
+
+</body>
+
+</html>
